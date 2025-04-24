@@ -3,13 +3,12 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
 import model.Student;
 import database.DatabaseHelper;
 
 public class ApplyPage extends JFrame {
 
-    public ApplyPage() {
+    public ApplyPage(Runnable onFinish) {
         setTitle("🎓 Scholarship Application");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +38,7 @@ public class ApplyPage extends JFrame {
         // Submit Button
         JButton submitBtn = new JButton("Apply");
         submitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        submitBtn.setBackground(new Color(70, 130, 180));
+        submitBtn.setBackground(new Color(76, 175, 80));
         submitBtn.setForeground(Color.WHITE);
         submitBtn.setFocusPainted(false);
         submitBtn.setPreferredSize(new Dimension(100, 35));
@@ -69,10 +68,9 @@ public class ApplyPage extends JFrame {
                         "✅ Application submitted successfully for: " + name,
                         "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                nameField.setText("");
-                gpaField.setText("");
-                incomeField.setText("");
-                ageField.setText("");
+                // Redirect after application
+                dispose(); // Close this page
+                onFinish.run(); // Call the callback
 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Please enter valid numeric values for GPA, Income, and Age.",
@@ -83,6 +81,11 @@ public class ApplyPage extends JFrame {
                 ex.printStackTrace();
             }
         });
+    }
+
+    // Optional default constructor for compatibility (does nothing on finish)
+    public ApplyPage() {
+        this(() -> {});
     }
 
     private JTextField addField(JPanel parent, String labelText) {

@@ -27,7 +27,7 @@ public class Main {
                 }
             }
 
-                //  Generate report and serialize only eligible students
+                // only eligible students
             try {
                 ReportGenerator.generateEligibleStudentsReport(eligibleStudents, "eligible_students.txt");
                 Serializer.serializeToFile(eligibleStudents, "students_data.bin");
@@ -42,6 +42,6 @@ public class Main {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }); 
+        });
     }
 }

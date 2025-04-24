@@ -29,8 +29,9 @@ public class LoginPage extends JFrame {
             String user = usernameField.getText();
             String pass = new String(passwordField.getPassword());
             if (user.equals("admin") && pass.equals("admin")) {
-                new AdminPage();
+                new AdminDashboard();
                 dispose();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid credentials");
             }

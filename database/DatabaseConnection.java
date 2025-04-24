@@ -6,12 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+public class  DatabaseConnection {
 
     
     private static final String URL = "jdbc:mariadb://localhost:3306/scholarship_db"; 
     private static final String USER = "root"; 
-    private static final String PASSWORD = "Maether"; 
+    private static final String PASSWORD = "Malek456789";
 
     
     private Connection connection;

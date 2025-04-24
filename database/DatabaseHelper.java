@@ -11,7 +11,7 @@ public class DatabaseHelper {
 
     private static final String URL = "jdbc:mariadb://localhost:3306/scholarship_db";
     private static final String USER = "root";
-    private static final String PASSWORD = "Maether";
+    private static final String PASSWORD = "Malek456789";
 
     public static void insertStudent(Student s) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
@@ -79,8 +79,19 @@ public class DatabaseHelper {
         }
         return eligible;
     }
-    public static void insertScholarship(Scholarship s2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertScholarship'");
+    public static void insertScholarship(Scholarship s) {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String sql = "INSERT INTO scholarships (name, min_gpa, max_income, min_age, max_age) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, s.getName());
+            stmt.setDouble(2, s.getMinGPA());
+            stmt.setDouble(3, s.getMaxIncome());
+            stmt.setInt(4, s.getMinAge());
+            stmt.setInt(5, s.getMaxAge());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }
